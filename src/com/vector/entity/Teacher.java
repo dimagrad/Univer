@@ -1,27 +1,29 @@
 package com.vector.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Teacher {
-    public Teacher(String n, double s, Course c){
-        name = n;
-        salary = s;
+
+    private List<String> nameTeachers;
+
+
+    public Teacher(){
+
+        nameTeachers = new ArrayList<>();
+
+        nameTeachers.add("Александр Сергеевич");
+        nameTeachers.add("Иван Павлович");
+        nameTeachers.add("Мария Александровна");
+        nameTeachers.add("Владимир петрович");
+        nameTeachers.add("Людмила Петровна");
+        nameTeachers.add("Зинаида Альбертовна");
 
     }
 
-    public String getName(){
+    public List<String> getTeacher(){
 
-        return name;
+        return nameTeachers;
+
     }
-
-    public double getSalary(){
-
-        return salary;
-    }
-
-    public void outp(){
-
-        System.out.println("Name: "+getName()+" Salary = "+getSalary());
-    }
-
-    private String name;
-    private double salary;
 }

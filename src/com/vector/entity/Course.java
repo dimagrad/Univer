@@ -1,16 +1,33 @@
 package com.vector.entity;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Course {
-    public Course(String n, int pte, int p, Student t, String d) {
-        nazva = n;
-        PTE = pte;                //people to enter
-        para = p;
-        date = d;
-        newS = t;
+    private List<Course> course;
+    private Student newS;
+    private String nazva;
+    private int PTE;
+    private String date;
+    private int para;
+    public Course(){
 
     }
+    public Course(String n, int pte, int p, Student t, String d) {
+
+        course = new ArrayList<>();
+
+        course.add(new Course("Algebra",5,1 ,null, ""));
+        course.add(new Course("Geometry",5,2,null, ""));
+        course.add(new Course("Phyzics",5,3 ,null, ""));
+        course.add(new Course("English",5,4 ,null, ""));
+
+    }
+
+    public Course getCourse(){
+        return (Course) course;
+    }
+
     public String getName(){
 
         return nazva;
@@ -60,12 +77,8 @@ public class Course {
 
     public void outp(){
 
-        System.out.println("Name of schedule: " + getName()+" people to enter: " + getPTE()
+        System.out.println("Название пары " + getName()+" Доступных мест для входа на курс: " + getPTE()
                 +" Position: " + getPara() + " Time: " + getTime());
     }
-    private Student newS;
-    private String nazva;
-    private int PTE;
-    private String date;
-    private int para;
+
 }

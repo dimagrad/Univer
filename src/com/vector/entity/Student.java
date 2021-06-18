@@ -1,79 +1,41 @@
 package com.vector.entity;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Student {
+    List<String> nameStudent;
+    SetStudent setStudent;
+    public Student() {
 
-    private Scanner in;
+        nameStudent = new ArrayList<>();
 
-    public Student(String n, int sem, boolean f, boolean s) {
-        in = new Scanner(System.in);
+        nameStudent.add("Дима Петров");
+        nameStudent.add("Олег ИВанов");
+        nameStudent.add("Данил Чистов");
+        nameStudent.add("Алина Пустовойт");
+        nameStudent.add("Карина Кузьменко");
 
-        name = n;
-        semestr = sem;
-        forma = f;
-        stip = s;
     }
 
-    public String getName(){
+    public List<String> getStudent(){
 
-        return name;
+        return nameStudent;
+    }
+    public void setStudent(){
+
+        boolean l = setStudent.setNameStudent();
+        if (l)
+            System.out.println("Студент добавлен");
+        else
+            System.out.println("Имя неверно или вы пытаетесь добавить существующего студента");
     }
 
-    public int getSemestr(){
 
-        return semestr;
-    }
-
-    public boolean getForma(){
-
-        return forma;
-    }
-
-    public boolean getStip(){
-
-        return stip;
-    }
-    public void outp(){
+   /* public void outp(){
         System.out.println("Name: " + getName() + " Semestr = "
                 + getSemestr() + " forma= " + (getForma() ? "Denna" : "Zaochna") + " stipendiya= "
                 + (getStip() ? "+" : "-"));
-    }
+    }*/
 
-    public String setName(){
-        System.out.println("Enter your name ");
-        name = in.next();
-        return name;
-    }
-
-    public int setKurs(){
-
-        System.out.println("Enter your curs ");
-        semestr = in.nextInt();
-        while (semestr>6){
-            System.out.println("incorrect, try again");
-            System.out.println("Enter your curs ");
-            semestr = in.nextInt();
-        }
-        return semestr;
-    }
-    public boolean setForma(){
-
-        System.out.println("Enter your forma (true or false) ");
-         forma = in.nextBoolean();
-         return forma;
-
-    }
-    public boolean setStip(){
-
-        System.out.println("Have you got stip (true or false) ");
-        stip = in.nextBoolean();
-        return stip;
-
-    }
-
-    private String name;
-    private int semestr;
-    private boolean forma;
-    private boolean stip;
 }

@@ -1,32 +1,17 @@
 package com.vector;
 import com.vector.entity.Course;
+import com.vector.entity.SetStudent;
 import com.vector.entity.Student;
 import com.vector.entity.Teacher;
-
+import java.util.ArrayList;
 import java.util.*;
 public class Univer {
 
     public static void main(String[] args) {
     Scanner in = new Scanner(System.in);
-
-	ArrayList<Student> arrs = new ArrayList<>();
-	arrs.add(new Student("Dima", 4, true, true));
-    arrs.add(new Student("Oleg", 3, true, true));
-    arrs.add(new Student("Danil", 4, true, true));
-
-	ArrayList<Course> arrsub = new ArrayList<>();
-	arrsub.add(new Course("Algebra",5,1 ,null, ""));
-	arrsub.add(new Course("Geometry",5,2,null, ""));
-    arrsub.add(new Course("Phyzics",5,3 ,null, ""));
-    arrsub.add(new Course("English",5,4 ,null, ""));
-
-
-    ArrayList<Teacher> arrp = new ArrayList<>();
-    arrp.add(new Teacher("Nikita", 10000, arrsub.get(0)));
-    arrp.add(new Teacher("Ivan", 10000, arrsub.get(1)));
-    arrp.add(new Teacher("Maria", 10000, arrsub.get(2)));
-    arrp.add(new Teacher("Petr", 10000, arrsub.get(3)));
-
+    Course courses = new Course();
+    Teacher teachers = new Teacher();
+    Student students = new Student();
         head();
         int x;
         x=in.nextInt();
@@ -37,81 +22,86 @@ public class Univer {
         }
         while (true){
 
-
             switch (x) {
 
                 case 1:
                     System.out.println("");
                     System.out.println("Students:");
 
-                    for (Student k : arrs) {
-                        k.outp();
+                    for (String k : students.getStudent()) {
+                        System.out.println( k );
                     }
                     break;
 
                 case 2:
-                    //arrs.add(new Student(Student.setName(), Student.setKurs(), Student.setForma(), Student.setStip()));
-                    arrs.add(new Student(readInput("Enter name"), Integer.parseInt(readInput("Enter course")),
-                            Boolean.parseBoolean(readInput("enter form (true or false)")),
-                            Boolean.parseBoolean(readInput("enter stipend (true or false)"))));
+
+                    students.setStudent();
+
+                    //l ?"Студент добавлен":"Имя неверно или вы пытаетесь добавить существующего студента";
                     break;
-                case 3:
+
+                /*case 3:
                     System.out.println("Which student would you like to add?(number)");
 
-                    for (Student k : arrs) {
-                        k.outp();
+                    for (String k : students.getStudent()) {
+                        System.out.println(k+" ");
                     }
                     int ch_st = in.nextInt();
                     ch_st--;
-                    while(ch_st+1>arrs.size()){
+                    while(ch_st+1>students.getStudent().size()){
                         System.out.println("incorrect, please, enter correct");
-                        for (Student k : arrs) {
-                            k.outp();
+                        for (String k : students.getStudent()) {
+                            System.out.println(k+" ");
                         }
                         ch_st=in.nextInt();
                     }
                     System.out.println("Which course would you like to study?(number)");
 
-                    for (Course j : arrsub) {
+                    for (Course j : courses.getName()) {
                         j.outp();
                     }
                     int ch_c = in.nextInt();
                     ch_c--;
-                    while(ch_c+1>arrsub.size()){
+                    while(ch_c+1>courses.size()){
                         System.out.println("incorrect, please, enter correct");
-                        for (Student k : arrs) {
-                            k.outp();
+                        for (String k : students.getStudent()){
+                            System.out.println(k +" ");
                         }
                         ch_c=in.nextInt();
                     }
-                    Course tmpCourse = arrsub.get(ch_c);
-                    tmpCourse.setStudent(arrs.get(ch_st));
+                    Course tmpCourse = courses.get(ch_c);
+                    //tmpCourse.setStudent(getStudentName.get(ch_st));
 
                     int tmpt = 0;
-                    for (int i = 0; i<arrp.size(); i++){
-                        if(arrp.get(i).getName().equals(arrsub.get(ch_st).getName())){
+                    for (int i = 0; i<teachers.size(); i++){
+                        if(teachers.get(i).getTeacher().equals(courses.get(ch_st).getName())){
                             tmpt=i;
                         }
 
                     }
-                    System.out.println("Student " + arrsub.get(ch_c).getStudent().getName() + " now is study at " + arrsub.get(ch_c).getName()
-                            + " which will be on the Schedule " + arrsub.get(ch_c).getPara() + ". Lector: " + arrp.get(tmpt).getName()
-                            + " Time: " + arrsub.get(ch_c).getTime());
-                    break;
+                    System.out.println("Student " + courses.get(ch_c).getStudent() + " now is study at " + courses.get(ch_c).getName()
+                            + " which will be on the Schedule " + courses.get(ch_c).getPara() + ". Lector: " + teachers.get(tmpt).getTeacher()
+                            + " Time: " + courses.get(ch_c).getTime());
+                    break;*/
                 case 4:
                     System.out.println("");
                     System.out.println("Courses:");
-                    for (Course j : arrsub) {
-                        j.outp();
-                    }
+                   /*for (int i = 0; i<courses.size(); i++)
+                       j.outp();
+
+                    }*/
+
                     break;
                 case 5:
                     System.out.println("");
                     System.out.println("Teachers:");
-                    for (Teacher i : arrp) {
-                        i.outp();
+                    for (String i : teachers.getTeacher()) {
+                        System.out.println(i+" ");
                     }
 
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + x);
             }
             System.out.println("");
             head();
