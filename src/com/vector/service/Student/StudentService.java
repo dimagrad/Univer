@@ -1,6 +1,8 @@
-package com.vector.service;
+package com.vector.service.Student;
 
 import com.vector.entity.StudentEntity;
+import com.vector.service.Student.StudentEntityService;
+import com.vector.service.SystemInputService;
 
 public class StudentService {
 
