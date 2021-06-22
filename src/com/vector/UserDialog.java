@@ -3,36 +3,41 @@ package com.vector;
 import com.vector.entity.StudentEntity;
 import com.vector.mock.CourseMock;
 import com.vector.mock.StudentMock;
-import com.vector.mock.Teacher;
-import com.vector.service.StudentService;
+import com.vector.mock.TeacherMock;
+import com.vector.mock.TimeTableMock;
+import com.vector.service.Student.StudentService;
+import com.vector.wrapper.CoursesWrapper;
 import com.vector.wrapper.StudentsWrapper;
-import com.vector.service.TimeTableService;
+import com.vector.service.TimeTableEntityService;
+import com.vector.wrapper.TeachersWrapper;
+import com.vector.wrapper.TimeTableWrapper;
 
-import java.util.ArrayList;
-import java.util.List;
+import static com.vector.service.SystemInputService.readLine;
 
-import static com.vector.Univer.readInput;
 public class UserDialog {
 
     int x;
 
     private StudentsWrapper studentsWrapper;
+    private TeachersWrapper teachersWrapper;
+    private CoursesWrapper coursesWrapper;
+    private TimeTableWrapper timeTableWrapper;
 
     public UserDialog() {
-
+        timeTableWrapper = new TimeTableWrapper(TimeTableMock.getTimeTables());
+        teachersWrapper = new TeachersWrapper(TeacherMock.getTeachers());
         studentsWrapper = new StudentsWrapper(StudentMock.getStudents());
+        coursesWrapper = new CoursesWrapper(CourseMock.getCourses());
     }
 
     public void StartDialog(){
-        List<CourseMock> cours = new ArrayList<>(/*)new CourseMock().getCourse(*/);
-        Teacher teachers = new Teacher();
-        TimeTableService timeTableService = new TimeTableService();
+        TimeTableEntityService timeTableEntityService = new TimeTableEntityService();
         head();
-        x=Integer.parseInt(readInput());
+        x=Integer.parseInt(readLine());
         while (x>6){
             System.out.println("Select the correct choice");
             head();
-            x=Integer.parseInt(readInput());
+            x=Integer.parseInt(readLine());
         }
         while (true){
 
@@ -52,68 +57,31 @@ public class UserDialog {
                     studentsWrapper.addStudent(student);
 
                     break;
-                /*case 3:
-                    System.out.println("Какого студента вы бы хотели добавить ");
+                case 3:
 
-                    for (String k : students.getStudent()) {
-                        System.out.println(k+" ");
-                    }
-                    int chStudent = Integer.parseInt(readInput());
-                    chStudent--;
-                    while(chStudent+1>students.getStudent().size()){
-                        System.out.println("Неверный ввод, введите другой");
-                        for (String k : students.getStudent()) {
-                            System.out.println(k+" ");
-                        }
-                        chStudent=Integer.parseInt(readInput());
-                    }
-                    System.out.println("На какой курс вы хотите записать");
-
-                    for (Course j : course.getCourse()) {
-                        j.outp();
-                    }
-                    int chCourse = Integer.parseInt(readInput());
-                    chCourse--;
-                    while(chCourse+1>course.getCourse().size()){
-                        System.out.println("Неверный ввод, введите другой");
-                        for (String k : students.getStudent()){
-                            System.out.println(k +" ");
-                        }
-                        chCourse=Integer.parseInt(readInput());
-                    }
-
-                    Course tmpCourse = course.get(chCourse);
-
-                    System.out.println("Student " + course.get(chCourse).getStudent() + " now is study at " + course.get(chCourse).getName()
-                            + " which will be on the Schedule " + course.get(chCourse).getPara() + ". Lector: " + teachers.get(tmpt).getTeacher()
-                            + " Time: " + course.get(chCourse).getTime());
-                    break;*/
+                    break;
                 case 4:
                     System.out.println("");
-                   for (CourseMock courseMock1 : cours)
-                       System.out.println(courseMock1);
-                       //course1.outp();
+
+                    coursesWrapper.printCourses();
                     break;
                 case 5:
                     System.out.println("");
-                    for (Teacher i : teachers.getTeacher()) {
-                        System.out.println("Преподаватель: "+i.getName()+" Обучает предмет: "+ i.getCourse());
-                    }
+
+                    teachersWrapper.printTeachers();
 
                     break;
                 case 6:
                     System.out.println("");
+                    timeTableWrapper.printTimeTable();
 
-                    for (TimeTableService t : timeTableService.getTimeTable()) {
-                        System.out.println( t );
-                    }
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + x);
             }
             System.out.println("");
             head();
-            x=Integer.parseInt(readInput());
+            x=Integer.parseInt(readLine());
         }
 
     }
