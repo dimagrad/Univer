@@ -1,7 +1,7 @@
 package com.vector.mock;
 
 import com.vector.entity.StudentEntity;
-import com.vector.service.Student.StudentEntityService;
+import com.vector.service.student.StudentEntityService;
 
 import java.util.ArrayList;
 import java.util.List;

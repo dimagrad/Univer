@@ -1,37 +1,39 @@
 package com.vector;
 
 import com.vector.entity.StudentEntity;
+import com.vector.entity.TimeTableEntity;
 import com.vector.mock.CourseMock;
 import com.vector.mock.StudentMock;
 import com.vector.mock.TeacherMock;
-import com.vector.mock.TimeTableMock;
-import com.vector.service.Student.StudentService;
+import com.vector.service.student.StudentService;
+import com.vector.service.time.table.AddToCourse;
+import com.vector.service.time.table.TimeTableService;
 import com.vector.wrapper.CoursesWrapper;
 import com.vector.wrapper.StudentsWrapper;
-import com.vector.service.TimeTableEntityService;
 import com.vector.wrapper.TeachersWrapper;
 import com.vector.wrapper.TimeTableWrapper;
+
+import java.util.List;
 
 import static com.vector.service.SystemInputService.readLine;
 
 public class UserDialog {
 
     int x;
-
+private AddToCourse addToCourse;
     private StudentsWrapper studentsWrapper;
     private TeachersWrapper teachersWrapper;
     private CoursesWrapper coursesWrapper;
     private TimeTableWrapper timeTableWrapper;
 
     public UserDialog() {
-        timeTableWrapper = new TimeTableWrapper(TimeTableMock.getTimeTables());
+addToCourse = new AddToCourse();
         teachersWrapper = new TeachersWrapper(TeacherMock.getTeachers());
         studentsWrapper = new StudentsWrapper(StudentMock.getStudents());
         coursesWrapper = new CoursesWrapper(CourseMock.getCourses());
     }
 
-    public void StartDialog(){
-        TimeTableEntityService timeTableEntityService = new TimeTableEntityService();
+    public void startDialog(){
         head();
         x=Integer.parseInt(readLine());
         while (x>6){
@@ -58,6 +60,9 @@ public class UserDialog {
 
                     break;
                 case 3:
+                    addToCourse.addStudentToCourse(studentsWrapper, coursesWrapper);
+
+                    coursesWrapper.printCourses();
 
                     break;
                 case 4:
@@ -73,6 +78,8 @@ public class UserDialog {
                     break;
                 case 6:
                     System.out.println("");
+                    List<TimeTableEntity> timeTables = TimeTableService.formTimeTable();
+                    timeTableWrapper = new TimeTableWrapper(timeTables);
                     timeTableWrapper.printTimeTable();
 
                     break;

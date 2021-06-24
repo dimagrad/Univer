@@ -1,4 +1,4 @@
-package com.vector.service.Student;
+package com.vector.service.student;
 
 import com.vector.entity.StudentEntity;
 
