@@ -1,5 +1,6 @@
 package com.vector.wrapper;
 
+import com.vector.entity.CourseEntity;
 import com.vector.entity.StudentEntity;
 
 import java.util.List;
@@ -19,6 +20,16 @@ public class StudentsWrapper {
 
             students.add(student);
         }
+    }
+
+    public StudentEntity getStudent(int index) {
+
+        return this.students.get(index);
+    }
+
+    public List<StudentEntity> getStudents() {
+
+        return students;
     }
 
     public void printStudents() {

@@ -1,30 +1,55 @@
 package com.vector.entity;
 
-import com.vector.service.DoubleLessonTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CourseEntity {
+
     private int pte;
     private String name;
-    private String time;
     private int doubleLesson;
+    private List<StudentEntity> students;
 
-    public CourseEntity(){}
     public CourseEntity(String name, int pte, int doubleLesson) {
 
         this.name = name;
         this.pte = pte;
         this.doubleLesson = doubleLesson;
-
+        students = new ArrayList<>();
     }
 
     public String getName(){
 
         return name;
     }
+    public void setStudent(List<StudentEntity> students){
+
+        this.students = students;
+    }
+
+    public void addStudent(StudentEntity student) {
+
+        if (this.students.size() < pte) {
+
+            this.students.add(student);
+        } else {
+
+            System.out.println("Слишком много студентов");
+        }
+    }
+
+    public List<StudentEntity> getStudents() {
+
+        return students;
+    }
 
     public int getPte(){
 
         return pte;
+    }
+    public void setPte(int pte){
+
+        this.pte = pte;
     }
 
     public int getDoubleLesson(){
@@ -32,11 +57,24 @@ public class CourseEntity {
         return doubleLesson;
     }
 
-    public String toString() {
+    public void getStudent(){
+        for (StudentEntity student : students) {
+            System.out.println("Имя: " + student.getName());
+        }
+    }
 
-        //String time  = DoubleLessonTime.getTime(doubleLesson);
-        return "Курс: Название - '" + name + "'. Доступных мест на вход: " + pte + ". На паре №"
-                + doubleLesson + ".";
+
+
+    public String toString() {
+        if (students == null) {
+            System.out.println("st " + students);
+            return "Курс: Название - '" + name + "'. Доступных мест на вход: " + pte + ". На паре №"
+                    + doubleLesson + ".";
+        }else{
+            System.out.println("st" + students);
+                    return "Курс: Название - '" + name + "'. Доступных мест на вход: " + pte + ". На паре №"
+                            + doubleLesson + ". Студенты на курсе: " + students;
+        }
     }
     public boolean equals(Object teacher) {
 

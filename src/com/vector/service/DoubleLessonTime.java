@@ -15,4 +15,11 @@ public class DoubleLessonTime {
         }
         return "";
     }
+    public static String getSpace(int sum, String word){
+        String space = "   ";
+        for (int i = 1; i <= sum-word.length(); i++ )
+            space +=" ";
+        System.out.println(space.length());
+        return space;
+    }
 }
