@@ -1,5 +1,6 @@
 package com.vector.wrapper;
 
+import com.vector.Except.Except;
 import com.vector.entity.CourseEntity;
 import com.vector.service.DoubleLessonTime;
 
@@ -14,9 +15,13 @@ public class CoursesWrapper {
         this.courses = courses;
     }
 
-    public CourseEntity getCourse(int index) {
+    public CourseEntity getCourse(int index) throws Except {
+        if (this.courses.size()>= index){
+            return this.courses.get(index);
+        } else {
+            throw new Except("Слишком много студентов");
+        }
 
-        return this.courses.get(index);
     }
 
     public List<CourseEntity> getCourses() {
@@ -26,6 +31,7 @@ public class CoursesWrapper {
     public void printCourses() {
 
         System.out.println("Расписание курсов: \n");
+//        TODO https://www.oracle.com/technetwork/java/codeconventions-150003.pdf
         for (int i = 1; i<=4; i++)
             System.out.println(DoubleLessonTime.getTime(i));
 

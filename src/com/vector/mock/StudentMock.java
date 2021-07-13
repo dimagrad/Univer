@@ -9,7 +9,6 @@ import java.util.List;
 public class StudentMock {
 
     public static List<StudentEntity> getStudents() {
-
         List<StudentEntity> students = new ArrayList<>();
 
         students.add(StudentEntityService.createStudent("Дима Петров"));

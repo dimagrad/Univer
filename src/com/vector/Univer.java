@@ -1,8 +1,9 @@
 package com.vector;
 
-public class Univer {
+import java.io.*;
 
-    public static void main(String[] args) {
+public class Univer {
+    public static void main(String[] args) throws IOException {
 
         UserDialog userDialog = new UserDialog();
         userDialog.startDialog();
