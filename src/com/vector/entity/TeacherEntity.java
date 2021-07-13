@@ -3,8 +3,11 @@ package com.vector.entity;
 public class TeacherEntity {
     private String name;
     private String course;
-    public TeacherEntity(){}
-    public TeacherEntity(String name, String course){
+
+    public TeacherEntity() {
+    }
+
+    public TeacherEntity(String name, String course) {
 
         this.name = name;
         this.course = course;

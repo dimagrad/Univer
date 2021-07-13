@@ -4,8 +4,6 @@ public class StudentEntity {
 
     private String name;
 
-    public StudentEntity() {}
-
     public StudentEntity(String name) {
 
         this.name = name;
@@ -26,6 +24,7 @@ public class StudentEntity {
 
         return "Студент: Имя - '" + name + "'";
     }
+
 
     @Override
     public boolean equals(Object student) {

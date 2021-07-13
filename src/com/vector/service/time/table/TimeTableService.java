@@ -20,6 +20,7 @@ public class TimeTableService {
 
         for (CourseEntity cours : courses) {
             for (TeacherEntity teacher : teachers) {
+//                TODO rework with util class
                 if (cours.equals(teacher)) {
                     timeTables.add(TimeTableEntityService.createTimeTable(teacher, cours));
                 }

@@ -13,88 +13,108 @@ import com.vector.wrapper.StudentsWrapper;
 import com.vector.wrapper.TeachersWrapper;
 import com.vector.wrapper.TimeTableWrapper;
 
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
+import java.util.logging.Logger;
 
 import static com.vector.service.SystemInputService.readLine;
 
 public class UserDialog {
 
-    int x;
-private AddToCourse addToCourse;
+    private final Logger logger;
+
+    private AddToCourse addToCourse;
+
     private StudentsWrapper studentsWrapper;
     private TeachersWrapper teachersWrapper;
     private CoursesWrapper coursesWrapper;
     private TimeTableWrapper timeTableWrapper;
 
     public UserDialog() {
-addToCourse = new AddToCourse();
+
+        logger = Logger.getLogger(UserDialog.class.getName());
+
+        addToCourse = new AddToCourse();
         teachersWrapper = new TeachersWrapper(TeacherMock.getTeachers());
         studentsWrapper = new StudentsWrapper(StudentMock.getStudents());
         coursesWrapper = new CoursesWrapper(CourseMock.getCourses());
     }
 
-    public void startDialog(){
+    public void startDialog() throws IOException {
+
         head();
-        x=Integer.parseInt(readLine());
-        while (x>6){
-            System.out.println("Select the correct choice");
-            head();
-            x=Integer.parseInt(readLine());
-        }
-        while (true){
-
-            switch (x) {
-
-                case 1:
-                    System.out.println("");
-
-                    studentsWrapper.printStudents();
-
-                    break;
-                case 2:
-                    System.out.println("");
-
-                    StudentEntity student = StudentService.readStudent();
-
-                    studentsWrapper.addStudent(student);
-
-                    break;
-                case 3:
-                    addToCourse.addStudentToCourse(studentsWrapper, coursesWrapper);
-
-                    coursesWrapper.printCourses();
-
-                    break;
-                case 4:
-                    System.out.println("");
-
-                    coursesWrapper.printCourses();
-                    break;
-                case 5:
-                    System.out.println("");
-
-                    teachersWrapper.printTeachers();
-
-                    break;
-                case 6:
-                    System.out.println("");
-                    List<TimeTableEntity> timeTables = TimeTableService.formTimeTable();
-                    timeTableWrapper = new TimeTableWrapper(timeTables);
-                    timeTableWrapper.printTimeTable();
-
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + x);
-            }
-            System.out.println("");
-            head();
-            x=Integer.parseInt(readLine());
+        int x = 0;
+//    TODO    rework with exceptions \/
+        try {
+            x = Integer.parseInt(readLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Неверное значение");
+            startDialog();
         }
 
+        switch (x) {
+
+            case 1:
+//                 TODO   replace all sysout with some Logger \
+                System.out.println("\n");
+
+                studentsWrapper.printStudents();
+
+                break;
+            case 2:
+                System.out.println("\n");
+
+                StudentEntity student = new StudentService().readStudent();
+
+                studentsWrapper.addStudent(student);
+
+                break;
+            case 3:
+                System.out.println("\n");
+                addToCourse.addStudentToCourse(studentsWrapper, coursesWrapper);
+
+                coursesWrapper.printCourses();
+
+                break;
+            case 4:
+                System.out.println("\n");
+
+                coursesWrapper.printCourses();
+                break;
+            case 5:
+                System.out.println("\n");
+
+                teachersWrapper.printTeachers();
+
+                break;
+            case 6:
+                System.out.println("\n");
+                List<TimeTableEntity> timeTables = TimeTableService.formTimeTable();
+                timeTableWrapper = new TimeTableWrapper(timeTables);
+                timeTableWrapper.printTimeTable();
+
+                break;
+            case 7:
+                System.out.println("\n");
+                studentsWrapper.WriteToFileStudents();
+                break;
+            case 8:
+                System.out.println("\n");
+                studentsWrapper.WriteToProgramStudents();
+                break;
+            default:
+                System.out.println("Неверный выбор");
+        }
+        System.out.println("\n");
+        startDialog();
     }
 
 
-    public static void head(){
+    public void head() {
+        //logger.info("Выберите что вы хотите:");
         System.out.println("Выберите что вы хотите:");
         System.out.println("1: Посмотреть всех студтов");
         System.out.println("2: Добавить студента");
@@ -102,6 +122,10 @@ addToCourse = new AddToCourse();
         System.out.println("4: Посмотреть все курсы");
         System.out.println("5: Посмотреть всех учителей");
         System.out.println("6: Просмотр расписания");
+        System.out.println("7: Запись студентов в файл");
+        System.out.println("8: Запись студентов в программу");
+
     }
+
 }
 
