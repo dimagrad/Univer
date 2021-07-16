@@ -3,15 +3,27 @@ package com.vector.entity;
 public class StudentEntity {
 
     private String name;
+    private int age;
+    private String number;
 
-    public StudentEntity(String name) {
+    public StudentEntity(String name, int age, String number) {
 
         this.name = name;
+        this.age = age;
+        this.number = number;
     }
 
     public String getName() {
 
         return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getNumber() {
+        return number;
     }
 
     public void setName(String name) {
@@ -22,7 +34,8 @@ public class StudentEntity {
     @Override
     public String toString() {
 
-        return "Студент: Имя - '" + name + "'";
+        return "Студент: Имя - '" + name + "' Возраст: '" + age
+                + "' Номер телефона: '" + number + "'";
     }
 
 

@@ -1,13 +1,9 @@
 package com.vector.wrapper;
 
 import com.vector.entity.StudentEntity;
-import com.vector.service.student.StudentEntityService;
 
 import java.io.*;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class StudentsWrapper {
 
@@ -69,7 +65,8 @@ public class StudentsWrapper {
         //try (BufferedReader br = new BufferedReader(new FileReader("Student_add.txt"))) {    //Соэдание объекта FileReader
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("Student_add.txt"), "Cp1251"))) {
             while ((s = br.readLine()) != null) {
-                addStudent(StudentEntityService.createStudent(s));
+                //todo student file
+                //addStudent(StudentEntityService.createStudent(s));
             }
         } catch (IOException ехс) {
 
