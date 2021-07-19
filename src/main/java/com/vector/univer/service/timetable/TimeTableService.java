@@ -1,10 +1,10 @@
-package main.java.com.vector.service.time.table;
+package com.vector.univer.service.timetable;
 
-import main.java.com.vector.entity.CourseEntity;
-import main.java.com.vector.entity.TeacherEntity;
-import main.java.com.vector.entity.TimeTableEntity;
-import main.java.com.vector.mock.CourseMock;
-import main.java.com.vector.mock.TeacherMock;
+import com.vector.univer.entity.CourseEntity;
+import com.vector.univer.entity.TeacherEntity;
+import com.vector.univer.entity.TimeTableEntity;
+import com.vector.univer.mock.CourseMock;
+import com.vector.univer.mock.TeacherMock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ public class TimeTableService {
 
         for (CourseEntity cours : courses) {
             for (TeacherEntity teacher : teachers) {
-//                TODO rework with util class
+
                 if (cours.equals(teacher)) {
                     timeTables.add(TimeTableEntityService.createTimeTable(teacher, cours));
                 }

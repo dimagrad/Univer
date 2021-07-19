@@ -1,4 +1,4 @@
-package main.java.com.vector.entity;
+package com.vector.univer.entity;
 
 public class StudentEntity {
 
@@ -16,14 +16,6 @@ public class StudentEntity {
     public String getName() {
 
         return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public String getNumber() {
-        return number;
     }
 
     public void setName(String name) {

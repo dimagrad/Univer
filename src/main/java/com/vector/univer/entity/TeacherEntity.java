@@ -1,11 +1,8 @@
-package main.java.com.vector.entity;
+package com.vector.univer.entity;
 
 public class TeacherEntity {
     private String name;
     private String course;
-
-    public TeacherEntity() {
-    }
 
     public TeacherEntity(String name, String course) {
 

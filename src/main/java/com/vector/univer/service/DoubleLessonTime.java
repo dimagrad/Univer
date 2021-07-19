@@ -1,4 +1,4 @@
-package main.java.com.vector.service;
+package com.vector.univer.service;
 
 public class DoubleLessonTime {
     public static String getTime(int doubleLesson){
@@ -16,9 +16,13 @@ public class DoubleLessonTime {
         return "";
     }
     public static String getSpace(int sum, String word){
+
         String space = "";
-        for (int i = 1; i <= sum-word.length(); i++ )
-            space +=" ";
+
+        for (int i = 1; i <= sum-word.length(); i++ ) {
+
+            space += " ";
+        }
         return space;
     }
 }

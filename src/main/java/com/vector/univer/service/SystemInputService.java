@@ -1,4 +1,4 @@
-package main.java.com.vector.service;
+package com.vector.univer.service;
 
 import java.util.Scanner;
 

@@ -1,22 +1,21 @@
 package com.vector.univer.start;
 
+import com.vector.univer.entity.StudentEntity;
+import com.vector.univer.entity.TimeTableEntity;
+import com.vector.univer.mock.CourseMock;
+import com.vector.univer.mock.StudentMock;
+import com.vector.univer.mock.TeacherMock;
+import com.vector.univer.service.SystemInputService;
 import com.vector.univer.service.student.ReadStudentService;
+import com.vector.univer.service.student.StudentService;
 import com.vector.univer.service.student.WriteStudentService;
-import main.java.com.vector.entity.StudentEntity;
-import main.java.com.vector.entity.TimeTableEntity;
-import main.java.com.vector.mock.CourseMock;
-import main.java.com.vector.mock.StudentMock;
-import main.java.com.vector.mock.TeacherMock;
-import main.java.com.vector.service.SystemInputService;
-import main.java.com.vector.service.student.StudentService;
-import main.java.com.vector.service.time.table.AddToCourse;
-import main.java.com.vector.service.time.table.TimeTableService;
-import main.java.com.vector.wrapper.CoursesWrapper;
-import main.java.com.vector.wrapper.StudentsWrapper;
-import main.java.com.vector.wrapper.TeachersWrapper;
-import main.java.com.vector.wrapper.TimeTableWrapper;
+import com.vector.univer.service.timetable.AddToCourse;
+import com.vector.univer.service.timetable.TimeTableService;
+import com.vector.univer.wrapper.CoursesWrapper;
+import com.vector.univer.wrapper.StudentsWrapper;
+import com.vector.univer.wrapper.TeachersWrapper;
+import com.vector.univer.wrapper.TimeTableWrapper;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -42,16 +41,20 @@ public class UserDialog {
         studentsWrapper = new StudentsWrapper(StudentMock.getStudents());
         coursesWrapper = new CoursesWrapper(CourseMock.getCourses());
         writeStudentService = new WriteStudentService(StudentMock.getStudents());
+        readStudentService = new ReadStudentService(studentsWrapper.getStudents());
     }
 
-    public void startDialog() throws IOException {
+    public void startDialog() {
 
         head();
         int x = 0;
-//    TODO    rework with exceptions \/
+
         try {
+
             x = Integer.parseInt(SystemInputService.readLine());
+
         } catch (NumberFormatException e) {
+
             System.out.println("Неверное значение");
             startDialog();
         }
@@ -59,53 +62,52 @@ public class UserDialog {
         switch (x) {
 
             case 1:
-//                 TODO   replace all sysout with some Logger \
-                System.out.println("\n");
 
+                System.out.println("\n");
                 studentsWrapper.printStudents();
-
                 break;
+
             case 2:
+
                 System.out.println("\n");
-
                 StudentEntity student = new StudentService().readStudent();
-
                 studentsWrapper.addStudent(student);
-
                 break;
+
             case 3:
                 System.out.println("\n");
                 addToCourse.addStudentToCourse(studentsWrapper, coursesWrapper);
-
                 coursesWrapper.printCourses();
-
                 break;
+
             case 4:
                 System.out.println("\n");
-
                 coursesWrapper.printCourses();
                 break;
+
             case 5:
                 System.out.println("\n");
-
                 teachersWrapper.printTeachers();
-
                 break;
+
             case 6:
                 System.out.println("\n");
                 List<TimeTableEntity> timeTables = TimeTableService.formTimeTable();
                 timeTableWrapper = new TimeTableWrapper(timeTables);
                 timeTableWrapper.printTimeTable();
-
                 break;
+
             case 7:
                 System.out.println("\n");
-                writeStudentService.WriteToFileStudents();
+                writeStudentService.writeToFileStudents();
                 break;
+
             case 8:
                 System.out.println("\n");
-                readStudentService.WriteToProgramStudents();
+                Thread reaadThread = new Thread(readStudentService);
+                reaadThread.start();
                 break;
+
             default:
                 System.out.println("Неверный выбор");
         }
@@ -115,7 +117,6 @@ public class UserDialog {
 
 
     public void head() {
-        //logger.info("Выберите что вы хотите:");
         System.out.println("Выберите что вы хотите:");
         System.out.println("1: Посмотреть всех студентов");
         System.out.println("2: Добавить студента");
@@ -125,7 +126,6 @@ public class UserDialog {
         System.out.println("6: Просмотр расписания");
         System.out.println("7: Запись студентов в файл");
         System.out.println("8: Запись студентов в программу");
-
     }
 
 }

@@ -1,8 +1,7 @@
-package main.java.com.vector.wrapper;
+package com.vector.univer.wrapper;
 
-import main.java.com.vector.entity.StudentEntity;
+import com.vector.univer.entity.StudentEntity;
 
-import java.io.*;
 import java.util.List;
 
 public class StudentsWrapper {
@@ -20,7 +19,11 @@ public class StudentsWrapper {
 
             students.add(student);
             System.out.println(student.getName() + " добавлен");
-        } else System.out.println(student.getName() + " существует");
+
+        } else {
+
+            System.out.println(student.getName() + " существует");
+        }
     }
 
     public StudentEntity getStudent(int index) {

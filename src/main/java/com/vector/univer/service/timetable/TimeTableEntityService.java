@@ -1,8 +1,9 @@
-package main.java.com.vector.service.time.table;
+package com.vector.univer.service.timetable;
 
-import main.java.com.vector.entity.CourseEntity;
-import main.java.com.vector.entity.TeacherEntity;
-import main.java.com.vector.entity.TimeTableEntity;
+
+import com.vector.univer.entity.CourseEntity;
+import com.vector.univer.entity.TeacherEntity;
+import com.vector.univer.entity.TimeTableEntity;
 
 public class TimeTableEntityService {
 

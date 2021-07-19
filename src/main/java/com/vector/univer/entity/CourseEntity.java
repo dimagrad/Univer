@@ -1,6 +1,6 @@
-package main.java.com.vector.entity;
+package com.vector.univer.entity;
 
-import main.java.com.vector.Except.Except;
+import com.vector.univer.Except.Except;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +11,7 @@ public class CourseEntity {
     private String name;
     private int doubleLesson;
     private List<StudentEntity> students;
+
 
     public CourseEntity(String name, int pte, int doubleLesson) {
 
@@ -24,33 +25,18 @@ public class CourseEntity {
 
         return name;
     }
-    public void setStudent(List<StudentEntity> students){
-
-        this.students = students;
-    }
 
     public void addStudent(StudentEntity student) throws Except {
 
         if (this.students.size() < pte) {
 
             this.students.add(student);
+
         } else {
+
             throw new Except("Слишком много студентов");
+
         }
-    }
-
-    public List<StudentEntity> getStudents() {
-
-        return students;
-    }
-
-    public int getPte(){
-
-        return pte;
-    }
-    public void setPte(int pte){
-
-        this.pte = pte;
     }
 
     public int getDoubleLesson(){
@@ -75,6 +61,4 @@ public class CourseEntity {
 
         return this.getName().trim().toLowerCase().equals(((TeacherEntity) teacher).getCourse().trim().toLowerCase());
     }
-
-
 }

@@ -1,8 +1,9 @@
-package main.java.com.vector.wrapper;
+package com.vector.univer.wrapper;
 
-import main.java.com.vector.Except.Except;
-import main.java.com.vector.entity.CourseEntity;
-import main.java.com.vector.service.DoubleLessonTime;
+
+import com.vector.univer.Except.Except;
+import com.vector.univer.entity.CourseEntity;
+import com.vector.univer.service.DoubleLessonTime;
 
 import java.util.List;
 
@@ -16,9 +17,13 @@ public class CoursesWrapper {
     }
 
     public CourseEntity getCourse(int index) throws Except {
+
         if (this.courses.size()>= index){
+
             return this.courses.get(index);
+
         } else {
+
             throw new Except("Слишком много студентов");
         }
 
@@ -31,9 +36,11 @@ public class CoursesWrapper {
     public void printCourses() {
 
         System.out.println("Расписание курсов: \n");
-//        TODO https://www.oracle.com/technetwork/java/codeconventions-150003.pdf
-        for (int i = 1; i<=4; i++)
+
+        for (int i = 1; i<=4; i++) {
+
             System.out.println(DoubleLessonTime.getTime(i));
+        }
 
         System.out.println("");
         System.out.println("Список курсов: \n");

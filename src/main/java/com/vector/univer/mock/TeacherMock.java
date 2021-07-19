@@ -1,7 +1,7 @@
-package main.java.com.vector.mock;
+package com.vector.univer.mock;
 
-import main.java.com.vector.entity.TeacherEntity;
-import main.java.com.vector.service.TeacherEntityService;
+import com.vector.univer.entity.TeacherEntity;
+import com.vector.univer.service.TeacherEntityService;
 
 import java.util.ArrayList;
 import java.util.List;

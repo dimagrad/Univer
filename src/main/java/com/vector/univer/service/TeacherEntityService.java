@@ -1,6 +1,7 @@
-package main.java.com.vector.service;
+package com.vector.univer.service;
 
-import main.java.com.vector.entity.TeacherEntity;
+
+import com.vector.univer.entity.TeacherEntity;
 
 public class TeacherEntityService {
 

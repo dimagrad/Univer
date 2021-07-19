@@ -1,6 +1,6 @@
-package main.java.com.vector.entity;
+package com.vector.univer.entity;
 
-import main.java.com.vector.service.DoubleLessonTime;
+import com.vector.univer.service.DoubleLessonTime;
 
 public class TimeTableEntity {
 
@@ -12,6 +12,7 @@ public class TimeTableEntity {
         this.course = course;
         this.teacher = teacher;
     }
+
     public String toString() {
 
         return "Предмет: Название - " + course.getName() + DoubleLessonTime.getSpace(9,course.getName())

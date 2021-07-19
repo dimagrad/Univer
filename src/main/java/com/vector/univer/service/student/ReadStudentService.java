@@ -1,31 +1,48 @@
 package com.vector.univer.service.student;
-import main.java.com.vector.entity.StudentEntity;
+
+import com.vector.univer.entity.StudentEntity;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.List;
+import java.util.regex.Pattern;
 
-public class ReadStudentService {
+public class ReadStudentService implements Runnable {
+
     private List<StudentEntity> students;
 
     public ReadStudentService(List<StudentEntity> students) {
+
         this.students = students;
     }
 
-    public void WriteToProgramStudents() throws IOException {
-        String s;  // Создать и использовать объект FileReader, помещенный в оболочку на основе класса BufferedReader
-        //try (BufferedReader br = new BufferedReader(new FileReader("Student_add.txt"))) {    //Соэдание объекта FileReader
-        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("Student_add.txt"), "Cp1251"))) {
-            while ((s = br.readLine()) != null) {
-                //todo student file
-                //addStudent(StudentEntityService.createStudent(s));
+    public void run() {
+
+        String string;
+        String[] fields;
+        StudentEntity student;
+        Pattern p = Pattern.compile(",\\s");
+
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/resources/Student_add.txt"), "Cp1251"))) {
+            while ((string = br.readLine()) != null) {
+
+                fields = p.split(string);
+                student = StudentEntityService.createStudent(fields[0], Integer.parseInt(fields[1]), fields[2]);
+                if (!students.contains(student)) {
+
+                    students.add(student);
+                    System.out.println("Студент " + student.getName() + " добавлен");
+                } else {
+
+                    System.out.println("Студент " + student.getName() + "уже существует");
+                }
             }
         } catch (IOException ехс) {
 
             System.out.println("Ошибка ввода-вывода: " + ехс);
         }
+        System.out.println("Студенты записаны");
     }
-
 }

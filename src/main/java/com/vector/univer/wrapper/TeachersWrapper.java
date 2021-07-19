@@ -1,6 +1,6 @@
-package main.java.com.vector.wrapper;
+package com.vector.univer.wrapper;
 
-import main.java.com.vector.entity.TeacherEntity;
+import com.vector.univer.entity.TeacherEntity;
 
 import java.util.List;
 

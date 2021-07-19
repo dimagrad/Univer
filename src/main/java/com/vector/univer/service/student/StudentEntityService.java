@@ -1,6 +1,6 @@
-package main.java.com.vector.service.student;
+package com.vector.univer.service.student;
 
-import main.java.com.vector.entity.StudentEntity;
+import com.vector.univer.entity.StudentEntity;
 
 public class StudentEntityService {
 

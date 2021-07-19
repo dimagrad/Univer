@@ -1,4 +1,4 @@
-package main.java.com.vector.Except;
+package com.vector.univer.Except;
 
 public class Except extends Exception{
 

@@ -1,7 +1,7 @@
-package main.java.com.vector.service.student;
+package com.vector.univer.service.student;
 
-import main.java.com.vector.entity.StudentEntity;
-import main.java.com.vector.service.SystemInputService;
+import com.vector.univer.entity.StudentEntity;
+import com.vector.univer.service.SystemInputService;
 
 import java.util.regex.Pattern;
 
@@ -10,8 +10,11 @@ public class StudentService {
     }
 
     public String readStudentName() {
+
         String name;
+
         do {
+
             System.out.println("Введите имя студента: ");
             name = SystemInputService.readLine();
 
@@ -22,23 +25,28 @@ public class StudentService {
 
     public int readStudentAge(){
         int age;
+
         do {
+
             System.out.println("Введите возраст студента: ");
             age = Integer.parseInt(SystemInputService.readLine());
 
         } while (!Pattern.matches("[0-9]+", Integer.toString(age)));
-        return age;
 
+        return age;
     }
 
     public String readStudentNumber(){
         String number;
+
         do {
+
             System.out.println("Введите номер телефона студента: ");
             number = SystemInputService.readLine();
-        } while (!Pattern.matches("[0-9]+", number));
-        return number;
 
+        } while (!Pattern.matches("[0-9]+", number));
+
+        return number;
     }
 
     //    TODO remove static \/
