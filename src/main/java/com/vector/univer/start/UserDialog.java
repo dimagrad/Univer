@@ -6,7 +6,7 @@ import com.vector.univer.mock.CourseMock;
 import com.vector.univer.mock.StudentMock;
 import com.vector.univer.mock.TeacherMock;
 import com.vector.univer.service.SystemInputService;
-import com.vector.univer.service.student.ReadStudentService;
+import com.vector.univer.service.parsing_file.ParsingFile;
 import com.vector.univer.service.student.StudentService;
 import com.vector.univer.service.student.WriteStudentService;
 import com.vector.univer.service.timetable.AddToCourse;
@@ -17,6 +17,9 @@ import com.vector.univer.wrapper.TeachersWrapper;
 import com.vector.univer.wrapper.TimeTableWrapper;
 
 import java.util.List;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 import java.util.logging.Logger;
 
 public class UserDialog {
@@ -30,7 +33,7 @@ public class UserDialog {
     private CoursesWrapper coursesWrapper;
     private TimeTableWrapper timeTableWrapper;
     private WriteStudentService writeStudentService;
-    private ReadStudentService readStudentService;
+    private ParsingFile parsingFile;
 
     public UserDialog() {
 
@@ -41,10 +44,10 @@ public class UserDialog {
         studentsWrapper = new StudentsWrapper(StudentMock.getStudents());
         coursesWrapper = new CoursesWrapper(CourseMock.getCourses());
         writeStudentService = new WriteStudentService(StudentMock.getStudents());
-        readStudentService = new ReadStudentService(studentsWrapper.getStudents());
+        parsingFile = new ParsingFile();
     }
 
-    public void startDialog() {
+    public void startDialog() throws ExecutionException, InterruptedException {
 
         head();
         int x = 0;
@@ -104,8 +107,16 @@ public class UserDialog {
 
             case 8:
                 System.out.println("\n");
-                Thread reaadThread = new Thread(readStudentService);
-                reaadThread.start();
+                Callable<List <StudentEntity>> callable = new ParsingFile();
+                FutureTask futureTask = new FutureTask(callable);
+                new Thread(futureTask).start();
+
+                List<StudentEntity> students = (List<StudentEntity>) futureTask.get();
+
+                for (StudentEntity studenta : students)
+                    if (studenta !=null)
+                    studentsWrapper.addStudent(studenta);
+                System.out.println("Все студенты записаны");
                 break;
 
             default:

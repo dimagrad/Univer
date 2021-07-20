@@ -2,6 +2,7 @@ package com.vector.univer.wrapper;
 
 import com.vector.univer.entity.StudentEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentsWrapper {
@@ -11,6 +12,11 @@ public class StudentsWrapper {
     public StudentsWrapper(List<StudentEntity> students) {
 
         this.students = students;
+    }
+
+    public StudentsWrapper() {
+
+        this.students = new ArrayList<>();
     }
 
     public void addStudent(StudentEntity student) {
