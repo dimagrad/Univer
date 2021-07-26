@@ -128,6 +128,7 @@ public class UserDialog {
 
 
     public void head() {
+        System.out.println("gdgdhdkdkdk");
         System.out.println("Выберите что вы хотите:");
         System.out.println("1: Посмотреть всех студентов");
         System.out.println("2: Добавить студента");
