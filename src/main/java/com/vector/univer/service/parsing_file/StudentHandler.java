@@ -10,28 +10,45 @@ public class StudentHandler {
     String[] fields;
     private Pattern p = Pattern.compile("'");
     public StudentEntity handleStudent(String string){
+        try {
 
-        fields = p.split(string);
-        if (validation(fields)) {
+            fields = p.split(string);
+            if (validation(fields)) {
 
-            return StudentEntityService.createStudent(fields[1], Integer.parseInt(fields[3]), fields[5]);
-        } else {
+                return StudentEntityService.createStudent(fields[1], Integer.parseInt(fields[3]), fields[5]);
+            } else {
 
-            System.out.println("Неверный формат данных у " + fields[1]);
+                System.out.println("Неверный формат данных у " + fields[1]);
+            }
         }
-        return null;
+        catch(IndexOutOfBoundsException e){
+
+            System.out.println("Неверный формат данных");
+        }
+            return null;
     }
 
     public boolean validation(String[] a){
+        try {
 
-        if((a[0].contains("Имя"))&(a[2].contains("Возраст"))&(a[4].contains("Номер"))){
+            if ((a[0].contains("Студент: Имя - ")) & (a[2].contains("Возраст: ")) & (a[4].contains("Номер телефона: "))) {
 
-            return true;
+                return true;
 
-        }else{
+            } else {
 
-            return false;
+                return false;
 
+            }
         }
+        catch(ArrayIndexOutOfBoundsException e){
+
+            System.out.println("Неверный формат данных");
+        }
+        catch(IndexOutOfBoundsException e){
+
+            System.out.println("Неверный формат данных");
+        }
+        return false;
     }
 }
