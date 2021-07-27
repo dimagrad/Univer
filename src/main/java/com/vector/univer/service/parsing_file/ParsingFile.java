@@ -14,7 +14,7 @@ public class ParsingFile implements Callable<List<StudentEntity>> {
 
     public List<StudentEntity> call () throws Exception{
 
-        file = new File("src/resources/Test_Student_add.txt");
+        file = new File("src/resources/Student_add.txt");
 
         for (String student: new ReadLine(file).getLines()){
 

@@ -1,5 +1,3 @@
-package com.vector.univer.service.parsing_file;
-
 import org.junit.Test;
 
 import java.io.File;
