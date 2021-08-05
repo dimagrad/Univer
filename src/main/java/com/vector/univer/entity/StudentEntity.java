@@ -5,6 +5,7 @@ public class StudentEntity {
     private String name;
     private int age;
     private String number;
+    private int id = 0;
 
     public StudentEntity(String name, int age, String number) {
 

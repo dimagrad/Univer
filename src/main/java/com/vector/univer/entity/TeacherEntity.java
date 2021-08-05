@@ -1,5 +1,8 @@
 package com.vector.univer.entity;
 
+import lombok.Data;
+
+@Data
 public class TeacherEntity {
     private String name;
     private String course;
@@ -11,24 +14,24 @@ public class TeacherEntity {
 
     }
 
-    public String getName(){
+//    public String getName(){
+//
+//        return name;
+//    }
 
-        return name;
-    }
+//    public String getCourse(){
+//
+//        return course;
+//    }
 
-    public String getCourse(){
+//    public String toString() {
+//
+//        return "Преподаватель: Имя - '" + name + "'. Ведет предмет - '" + course + "'";
+//    }
 
-        return course;
-    }
-
-    public String toString() {
-
-        return "Преподаватель: Имя - '" + name + "'. Ведет предмет - '" + course + "'";
-    }
-
-    public boolean equals(Object teacher) {
-
-        return this.getCourse().trim().toLowerCase().equals(((TeacherEntity) teacher).getName().trim().toLowerCase());
-    }
+//    public boolean equals(Object teacher) {
+//
+//        return this.getCourse().trim().toLowerCase().equals(((TeacherEntity) teacher).getName().trim().toLowerCase());
+//    }
 
 }

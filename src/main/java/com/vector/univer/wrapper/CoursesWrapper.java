@@ -22,14 +22,12 @@ public class CoursesWrapper {
 
             return this.courses.get(index);
 
-        } else {
-
-            throw new Except("Слишком много студентов");
-        }
+        } else throw new Except("Слишком много студентов");
 
     }
 
     public List<CourseEntity> getCourses() {
+
         return courses;
     }
 
